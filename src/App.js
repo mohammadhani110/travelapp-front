@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import PackageDetails from "./pages/PackageDetails";
 import Packages from "./pages/Packages";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/packages" element={<Packages />} />
         <Route path="/package-details/:id" element={<PackageDetails />} />
 
+        <Route path="/login" element={<Login />} />
         {/* <Route path="*" element={<Navigate to="/not-found" />} /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>

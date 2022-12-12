@@ -5,10 +5,12 @@ const Footer = () => {
   return (
     <div class="footer--other">
       <div class="footer__logo--other">
-        <img
-          src={require("../../assets/img/logo-green-large.png")}
-          alt="Natours logo"
-        />
+        <Link to={"/"}>
+          <img
+            src={require("../../assets/img/logo-green-large.png")}
+            alt="Natours logo"
+          />
+        </Link>
       </div>
       <ul class="footer__nav--other">
         <li>

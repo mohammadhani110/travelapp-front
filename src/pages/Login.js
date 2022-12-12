@@ -1,9 +1,10 @@
 import React from "react";
+import Footer from "../components/Footer";
 
 const Login = () => {
   return (
     <>
-      <header class="header">
+      {/* <header class="header">
         <nav class="nav nav--tours">
           <a class="nav__el" href="/">
             All tours
@@ -20,7 +21,7 @@ const Login = () => {
             Sign up
           </a>
         </nav>
-      </header>
+      </header> */}
       <main class="main">
         <div class="login-form">
           <h2 class="heading-secondary ma-bt-lg">Log into your account</h2>
@@ -56,32 +57,7 @@ const Login = () => {
           </form>
         </div>
       </main>
-      <footer class="footer">
-        <div class="footer__logo">
-          <img src="/img/logo-green.png" alt="Natour logo" />
-        </div>
-        <ul class="footer__nav">
-          <li>
-            <a href="#">About us</a>
-          </li>
-          <li>
-            <a href="#">Download apps</a>
-          </li>
-          <li>
-            <a href="#">Become a guide</a>
-          </li>
-          <li>
-            <a href="#">Careers</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
-          </li>
-        </ul>
-        <p class="footer__copyright">
-          &copy; by Jonas Schmedtmann. Feel free to use this project for your
-          own purposes, EXCEPT producing your own course or tutorials!
-        </p>
-      </footer>
+      <Footer />
     </>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import img from "../../assets/img/logo-white.png";
 const HeaderHome = () => {
   return (
@@ -11,9 +12,9 @@ const HeaderHome = () => {
           <span className="heading-primary--main">Outdoors</span>
           <span className="heading-primary--sub">is where life happens</span>
         </h1>
-        <a href="#section-tours" className="btn btn--white btn--animated">
+        <Link to="/packages" className="btn btn--white btn--animated">
           Discover our tours
-        </a>
+        </Link>
       </div>
     </header>
   );
