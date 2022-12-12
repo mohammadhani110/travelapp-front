@@ -42,8 +42,22 @@ const Header = () => {
           </>
         )}
 
-        <button className="nav__el">Log in</button>
-        <button className="nav__el nav__el--cta">Sign up</button>
+        <button className="nav__el">
+          <Link
+            to={"/login"}
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            Log in
+          </Link>
+        </button>
+        <button className="nav__el nav__el--cta">
+          <Link
+            to={"/register"}
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            Register
+          </Link>
+        </button>
       </nav>
     </header>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
-const Login = () => {
+const Register = () => {
   return (
     <>
       {/* <header class="header">
@@ -25,7 +25,7 @@ const Login = () => {
       </header> */}
       <main class="main">
         <div class="login-form">
-          <h2 class="heading-secondary ma-bt-lg">Log into your account</h2>
+          <h2 class="heading-secondary ma-bt-lg">Register your account</h2>
           <form class="form form--login">
             <div class="form__group">
               <label class="form__label" for="email">
@@ -52,11 +52,24 @@ const Login = () => {
                 minlength="8"
               />
             </div>
+            <div class="form__group ma-bt-md">
+              <label class="form__label" for="confirmPassword">
+                Confirm Password
+              </label>
+              <input
+                class="form__input"
+                id="confirmPassword"
+                type="password"
+                placeholder="••••••••"
+                required
+                minlength="8"
+              />
+            </div>
             <div class="form__group">
-              <button class="btn btn--green">Login</button>
+              <button class="btn btn--green">Register</button>
             </div>
             <p>
-              Need an account? <Link to={"/register"}>Sign up</Link> here.
+              Already have an account? <Link to={"/login"}>Sign in</Link> here.
             </p>
           </form>
         </div>
@@ -66,4 +79,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
