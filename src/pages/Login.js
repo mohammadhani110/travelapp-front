@@ -28,7 +28,7 @@ const Login = () => {
           <form class="form form--login">
             <div class="form__group">
               <label class="form__label" for="email">
-                Email address
+                Email Address
               </label>
               <input
                 class="form__input"
