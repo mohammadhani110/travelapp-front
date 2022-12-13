@@ -30,14 +30,14 @@ const tourSlice = createSlice({
       state.error = action.payload;
     },
 
-    // GET TOURS
-    getAllTourSuccess(state, action) {
+    // SET TOURS
+    setAllTour(state, action) {
       state.isLoading = false;
       state.tours = action.payload;
     },
 
-    // GET TOUR DETAILS
-    getTourDetailsSuccess(state, action) {
+    // SET TOUR DETAILS
+    setTourDetails(state, action) {
       state.isLoading = false;
       state.tourDetails = action.payload;
     },
@@ -48,7 +48,7 @@ const tourSlice = createSlice({
 export default tourSlice.reducer;
 
 // Actions
-export const { getShowSuccess } = tourSlice.actions;
+export const { setAllTour } = tourSlice.actions;
 
 // ----------------------------------------------------------------------
 
@@ -57,7 +57,8 @@ export function getAllTours() {
     dispatch(tourSlice.actions.startLoading());
     try {
       const response = await axiosDEF.get("/api/tours");
-      dispatch(tourSlice.actions.getAllTourSuccess(response.data.data));
+      console.log("response.data.data: ", response.data.data);
+      dispatch(tourSlice.actions.setAllTour(response.data.data.tours));
       return { error: null };
     } catch (error) {
       dispatch(tourSlice.actions.hasError(error));
@@ -71,7 +72,7 @@ export function getTourDetails() {
     dispatch(tourSlice.actions.startLoading());
     try {
       const response = await axiosDEF.get("/api/tours");
-      dispatch(tourSlice.actions.getTourDetailsSuccess(response.data.data));
+      dispatch(tourSlice.actions.setTourDetails(response.data.data.tour));
       return { error: null };
     } catch (error) {
       dispatch(tourSlice.actions.hasError(error));

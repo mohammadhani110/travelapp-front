@@ -27,18 +27,18 @@ axiosDEF.interceptors.response.use(
     return response;
   },
   async function (error) {
-    if (
-      error.response.data.message?.includes(
-        "Either token is missing or it is revoked"
-      ) ||
-      error.response.data.message?.includes("Refresh token expired")
-    ) {
-      window.localStorage.setItem("sessionExpired", false);
+    // if (
+    //   error.response.data.message?.includes(
+    //     "Either token is missing or it is revoked"
+    //   ) ||
+    //   error.response.data.message?.includes("Refresh token expired")
+    // ) {
+    //   window.localStorage.setItem("sessionExpired", false);
 
-      // logoutSessionExpired();
+    //   // logoutSessionExpired();
 
-      return Promise.reject(error);
-    }
+    //   return Promise.reject(error);
+    // }
     return Promise.reject(error);
   }
 );
@@ -64,17 +64,17 @@ axiosJWT.interceptors.response.use(
     return response;
   },
   async function (error) {
-    const originalRequest = error.config;
+    // const originalRequest = error.config;
 
-    if (
-      error.response.status === 403 ||
-      error.response.statusText === "Forbidden"
-    ) {
-      window.localStorage.setItem("sessionExpired", false);
+    // if (
+    //   error.response.status === 403 ||
+    //   error.response.statusText === "Forbidden"
+    // ) {
+    //   window.localStorage.setItem("sessionExpired", false);
 
-      // logoutSessionExpired()
-      return Promise.reject(error);
-    }
+    //   // logoutSessionExpired()
+    //   return Promise.reject(error);
+    // }
 
     //   if (error.response.data.message === 'jwt expired' && error.response.status === 401 && !originalRequest._retry) {
     //       originalRequest._retry = true;
@@ -96,13 +96,5 @@ axiosJWT.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-// axiosInstance.interceptors.response.use(
-//   (response) => response,
-//   (error) =>
-//     Promise.reject(
-//       (error.response && error.response.data) || "Something went wrong"
-//     )
-// );
 
 export { axiosDEF, axiosJWT };
