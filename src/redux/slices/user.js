@@ -1,11 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 // import sum from 'lodash/sum';
 // import uniqBy from 'lodash/uniqBy';
 // utils
-import axios from '../../utils/axios';
+import { axiosDEF, axiosJWT } from "../../utils/axios";
 //
-import { dispatch, getState } from '../store';
-import { getSharedAssetIDs } from './assets';
+import { dispatch, getState } from "../store";
 
 // ----------------------------------------------------------------------
 
@@ -16,7 +15,7 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     // START LOADING

@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 // slices
-import productReducer from "./slices/product";
-import showReducer from "./slices/show";
-import persistStateReducer from "./slices/persist";
+// import productReducer from "./slices/product";
+// import showReducer from "./slices/show";
+// import persistStateReducer from "./slices/persist";
 import userReducer from "./slices/user";
+import tourReducer from "./slices/tour";
 
 // ----------------------------------------------------------------------
 const appReducer = combineReducers({
-  product: productReducer,
-  show: showReducer,
+  tour: tourReducer,
   user: userReducer,
 });
 
