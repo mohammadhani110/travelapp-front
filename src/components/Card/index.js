@@ -68,7 +68,11 @@ const Card = ({ tour }) => {
             rating ({tour?.ratingsQuantity || "21"})
           </span>
         </p>
-        <Link to={`/tours/${tour?._id}`} className="btn btn--green btn--small">
+        <Link
+          to={`/tours/${tour?._id}`}
+          onClick={localStorage.setItem("pathname", `/tours/${tour?._id}`)}
+          className="btn btn--green btn--small"
+        >
           Details
         </Link>
       </div>

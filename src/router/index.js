@@ -29,10 +29,15 @@ const Router = () => {
         <Route path="/tours/:id" element={<TourDetails />} />
 
         <Route path="/success" element={<Success />} />
-        <Route path="/login" element={<Signin />} />
-        <Route path="/register" element={<Register />} />
 
-        <Route element={<ProtectedRoute />}>
+        <Route element={<UnProtectedRoute />}>
+          <Route path="/login" element={<Signin />} />
+        </Route>
+        <Route element={<UnProtectedRoute />}>
+          <Route path="/register" element={<Register />} />
+        </Route>
+
+        <Route element={<ProtectedRoute redirectPath="/login" />}>
           <Route path="/bookings" element={<Bookings />} />
         </Route>
         {/* <Route path="*" element={<Navigate to="/not-found" />} /> */}
@@ -48,6 +53,16 @@ const ProtectedRoute = ({ redirectPath = "/login" }) => {
   // const { isAuthenticated } = useAuth();
   const user = useSelector((state) => state.user.user);
   if (isEmpty(user)) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  return <Outlet />;
+};
+
+const UnProtectedRoute = ({ redirectPath = "/tours" }) => {
+  // const { isAuthenticated } = useAuth();
+  const user = useSelector((state) => state.user.user);
+  if (!isEmpty(user)) {
     return <Navigate to={redirectPath} replace />;
   }
 

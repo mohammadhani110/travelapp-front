@@ -64,7 +64,23 @@ export function authenticateUser(data) {
       return { error: null };
     } catch (error) {
       dispatch(slice.actions.hasError(error));
-      return { error };
+      return { error: error?.data };
+    }
+  };
+}
+
+export function registerUser(data) {
+  return async () => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const response = await axiosDEF.post("/api/users/register", data);
+      console.log("response.data: ", response.data);
+      dispatch(slice.actions.setLogin(response.data));
+      localStorage.setItem("user", JSON.stringify(response.data));
+      return { error: null };
+    } catch (error) {
+      dispatch(slice.actions.hasError(error));
+      return { error: error?.data };
     }
   };
 }

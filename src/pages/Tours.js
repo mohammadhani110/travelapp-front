@@ -8,12 +8,14 @@ import Header from "../components/Header";
 import { getAllTours } from "../redux/slices/tour";
 
 const Tours = () => {
-  let { tour } = JSON.parse(localStorage.getItem("redux-root"));
-  tour = JSON.parse(tour);
   React.useEffect(() => {
-    console.log("root?.tour?.tours", tour);
-    if (tour?.tours.length > 0) {
-      return;
+    if (localStorage.getItem("redux-root")) {
+      let { tour } = JSON.parse(localStorage.getItem("redux-root"));
+      tour = JSON.parse(tour);
+      console.log("root?.tour?.tours", tour);
+      if (tour?.tours.length > 0) {
+        return;
+      }
     }
     dispatch(getAllTours());
   }, []);

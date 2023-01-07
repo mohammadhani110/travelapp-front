@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { authenticateUser } from "../redux/slices/user";
 import { useDispatch } from "../redux/store";
+import isEmpty from "../utils/isEmpty";
 // import { useDispatch } from "react-redux";
 
 // import useAuth from "../hooks/useAuth";
@@ -44,12 +45,21 @@ const Signin = () => {
         password: userData.password,
       };
       console.log("data", data);
-      dispatch(authenticateUser(data));
 
-      const returnUrl = localStorage.getItem("pathname");
-      console.log("returnUrl", returnUrl);
-      if (returnUrl) navigate(returnUrl);
-      setIsDisabled(false);
+      async function registerAPI() {
+        const { error } = await dispatch(authenticateUser(data));
+        console.log("res", error);
+        if (!isEmpty(error)) {
+          setError(error.message);
+          setIsDisabled(false);
+          return;
+        }
+        const returnUrl = localStorage.getItem("pathname");
+        console.log("returnUrl", returnUrl);
+        if (returnUrl) navigate(returnUrl);
+        setIsDisabled(false);
+      }
+      registerAPI();
       // if (response?.error) {
       //   setError(response?.error);
       // }
