@@ -1,13 +1,14 @@
 import axios from "axios";
-
+import { BASE_URL } from "./constants";
 // ----------------------------------------------------------------------
 
 // process.env.REACT_PROD_API_KEY ="https://travel-back.herokuapp.com"
 // const axiosInstance = axios.create({ baseURL: "http://localhost:3002" || '' });
 // const axiosInstance = axios.create({
-//   baseURL: process.env.REACT_DEV_API_KEY || "",
+//   baseURL: process.env.REACT_APP_DEV_API || "",
 // });
-const BASE_URL = process.env.REACT_APP_API_KEY || "http://localhost:5000";
+// const BASE_URL = process.env.REACT_APP_DEV_API || "http://localhost:5000";
+
 const axiosJWT = axios.create();
 const axiosDEF = axios.create();
 

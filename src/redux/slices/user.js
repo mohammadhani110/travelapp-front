@@ -12,6 +12,7 @@ const initialState = {
   isLoading: false,
   error: null,
   user: null,
+  isLoggedIn: false,
 };
 
 const slice = createSlice({
@@ -27,15 +28,19 @@ const slice = createSlice({
     hasError(state, action) {
       state.isLoading = false;
       state.error = action.payload;
+      state.isLoggedIn = false;
     },
-    setUserLogin(state, action) {
+    setLogin(state, action) {
       state.isLoading = false;
       state.user = action.payload;
-      state.error = false;
+      state.isLoggedIn = true;
     },
     // LOGOUT
-    logout(state, action) {
+    setLogout(state) {
+      state.isLoading = false;
       state.user = null;
+      state.error = false;
+      state.isLoggedIn = false;
     },
   },
 });
@@ -44,7 +49,7 @@ const slice = createSlice({
 export default slice.reducer;
 
 // Actions
-export const { logout, setUserLogin } = slice.actions;
+export const { setLogout, setLogin } = slice.actions;
 
 // ----------------------------------------------------------------------
 
@@ -53,12 +58,21 @@ export function authenticateUser(data) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axiosDEF.post("/api/users/login", data);
-      console.log("response.data.data: ", response.data.data);
-      dispatch(slice.actions.setUserLogin(response.data.data));
+      console.log("response.data: ", response.data);
+      dispatch(slice.actions.setLogin(response.data));
+      localStorage.setItem("user", JSON.stringify(response.data));
       return { error: null };
     } catch (error) {
       dispatch(slice.actions.hasError(error));
       return { error };
     }
+  };
+}
+export function logoutUser() {
+  return async () => {
+    dispatch(slice.actions.setLogout());
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    return { message: "user is logged out" };
   };
 }

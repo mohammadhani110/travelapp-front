@@ -3,7 +3,16 @@ import {
   useDispatch as useAppDispatch,
   useSelector as useAppSelector,
 } from "react-redux";
-import { persistStore, persistReducer } from "redux-persist";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 import { rootPersistConfig, rootReducer } from "./rootReducer";
 
 // ----------------------------------------------------------------------
@@ -12,7 +21,10 @@ const store = configureStore({
   reducer: persistReducer(rootPersistConfig, rootReducer),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
+      // serializableCheck: false,
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
       immutableCheck: false,
     }),
 });

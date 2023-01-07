@@ -29,41 +29,47 @@ const rootPersistConfig = {
   key: "root",
   storage,
   keyPrefix: "redux-",
-  whitelist: [],
-};
-
-const tourPersistConfig = {
-  key: "tour",
-  storage,
-  keyPrefix: "redux-",
-  // whitelist: ["sortBy", "checkout"],
+  whitelist: ["tour"],
 };
 
 const userPersistConfig = {
   key: "user",
   storage,
   keyPrefix: "redux-",
+  blacklist: ["isloggedIn"],
   // whitelist: ['sortBy', 'checkout'],
 };
-const statePersistConfig = {
-  key: "persist",
-  storage,
-  keyPrefix: "redux-",
-  // whitelist: ['sortBy', 'checkout'],
-};
+// const tourPersistConfig = {
+//   key: "tour",
+//   storage,
+//   keyPrefix: "redux-",
+//   whitelist: ["tours"],
+// };
+// const statePersistConfig = {
+//   key: "persist",
+//   storage,
+//   keyPrefix: "redux-",
+//   // whitelist: ['sortBy', 'checkout'],
+// };
 
 const appReducer = combineReducers({
-  tour: persistReducer(tourPersistConfig, tourReducer),
   // persist: persistReducer(statePersistConfig, persistStateReducer),
+  // tour: persistReducer(tourPersistConfig, tourReducer),
+  tour: tourReducer,
   user: persistReducer(userPersistConfig, userReducer),
 });
 
 const rootReducer = (state, action) => {
   // when a logout action is dispatched it will reset redux state
-  if (action.type === "user/logout") {
-    state = undefined;
-    storage.removeItem("persist:root");
-    storage.removeItem("persist:persist");
+  if (action.type === "user/setLogout") {
+    console.log("Logout");
+    // state = {};
+    // storage.removeItem("persist:root");
+    // storage.removeItem("persist:tour");
+    storage.removeItem("persist:user");
+    localStorage.removeItem("redux-user");
+    // storage.removeItem("persist:persist");
+    // window.location.pathname = "/tours";
   }
 
   return appReducer(state, action);

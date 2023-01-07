@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import logoWhite from "../../assets/img/logo-white.png";
 import userImg from "../../assets/img/users/user-5.jpg";
 import isEmpty from "../../utils/isEmpty";
-import { useDispatch, useSelector } from "react-redux";
+import { dispatch } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { logoutUser } from "../../redux/slices/user";
 
 const Header = () => {
   const user = useSelector((state) => state.user?.user);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
   return (
     <header className="header__secondary">
       <nav className="nav nav--tours">
@@ -44,7 +49,9 @@ const Header = () => {
                 <span>{user?.name || "John"}</span>
               </button>
               <div className="dropdown-content">
-                <button className="nav__el dropbtn ">Logout</button>
+                <button className="nav__el dropbtn " onClick={handleLogout}>
+                  Logout
+                </button>
               </div>
             </div>
           </>

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import useAuth from "../hooks/useAuth";
 import { authenticateUser } from "../redux/slices/user";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../redux/store";
+// import { useDispatch } from "react-redux";
+
+// import useAuth from "../hooks/useAuth";
 // import { authenticateUser } from "../redux/slices/user";
 const styles = {
   border: "1px solid tomato",
@@ -42,12 +44,8 @@ const Signin = () => {
         password: userData.password,
       };
       console.log("data", data);
-      dispatch(
-        authenticateUser({
-          email: userData.email,
-          password: userData.password,
-        })
-      );
+      dispatch(authenticateUser(data));
+
       const returnUrl = localStorage.getItem("pathname");
       console.log("returnUrl", returnUrl);
       if (returnUrl) navigate(returnUrl);
