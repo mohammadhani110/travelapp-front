@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div class="footer--other">
-      <div class="footer__logo--other">
+    <div className="footer--other">
+      <div className="footer__logo--other">
         <Link to={"/"}>
           <img
             src={require("../../assets/img/logo-green-large.png")}
@@ -12,7 +12,7 @@ const Footer = () => {
           />
         </Link>
       </div>
-      <ul class="footer__nav--other">
+      <ul className="footer__nav--other">
         <li>
           <Link href="#">About us</Link>
         </li>
@@ -29,7 +29,7 @@ const Footer = () => {
           <Link href="#">Contact</Link>
         </li>
       </ul>
-      <p class="footer__copyright--other">
+      <p className="footer__copyright--other">
         &copy; by Hani & Sameer. All rights reserved.
       </p>
     </div>

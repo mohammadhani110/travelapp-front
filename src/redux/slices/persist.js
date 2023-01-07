@@ -1,22 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
-// import sum from 'lodash/sum';
-// import uniqBy from 'lodash/uniqBy';
-// utils
-import axios from '../../utils/axios';
-//
-import { dispatch, getState } from '../store';
+import { createSlice } from "@reduxjs/toolkit";
+
+import { dispatch, getState } from "../store";
 
 // ----------------------------------------------------------------------
 
 const initialState = {
   isLoading: false,
   error: null,
-  team_id: null,
-  project_id: null,
+  tourId: null,
+  tours: [],
 };
 
 const slice = createSlice({
-  name: 'persist',
+  name: "persist",
   initialState,
   reducers: {
     // START LOADING
@@ -30,16 +26,16 @@ const slice = createSlice({
       state.error = action.payload;
     },
 
-    // GET ASSETS
-    setCurrentTeamId(state, action) {
+    // GET TourId
+    setTourId(state, action) {
       state.isLoading = false;
-      state.team_id = action.payload;
-      state.project_id = null;
+      state.tourId = action.payload;
+      state.tours = [];
     },
 
-    setCurrentProjectId(state, action) {
+    setTours(state, action) {
       state.isLoading = false;
-      state.project_id = action.payload;
+      state.tours = action.payload;
     },
   },
 });
@@ -48,6 +44,6 @@ const slice = createSlice({
 export default slice.reducer;
 
 // Actions
-export const { setCurrentTeamId, setCurrentProjectId } = slice.actions;
+export const { setTourId, setTours } = slice.actions;
 
 // ----------------------------------------------------------------------

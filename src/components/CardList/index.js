@@ -3,10 +3,10 @@ import { useSelector } from "../../redux/store";
 import Card from "../Card";
 
 const CardList = () => {
-  const tours = useSelector((state) => state.tour.tours);
+  const { tours } = useSelector((state) => state.tour);
   return (
-    <main class="main">
-      <div class="card-container">
+    <main className="main">
+      <div className="card-container">
         {tours.length > 0 && tours.map((tour) => <Card tour={tour} />)}
       </div>
     </main>

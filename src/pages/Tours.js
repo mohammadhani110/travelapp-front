@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { getAllTours } from "../redux/slices/tour";
 
-const Packages = () => {
+const Tours = () => {
   React.useEffect(() => {
     dispatch(getAllTours());
   }, []);
@@ -20,4 +20,4 @@ const Packages = () => {
   );
 };
 
-export default Packages;
+export default Tours;

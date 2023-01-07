@@ -5,68 +5,68 @@ import Footer from "../components/Footer";
 const Register = () => {
   return (
     <>
-      {/* <header class="header">
-        <nav class="nav nav--tours">
-          <a class="nav__el" href="/">
+      {/* <header className="header">
+        <nav className="nav nav--tours">
+          <a className="nav__el" href="/">
             All tours
           </a>
         </nav>
-        <div class="header__logo">
+        <div className="header__logo">
           <img src="/img/logo-white.png" alt="Natours logo" />
         </div>
-        <nav class="nav nav--user">
-          <a class="nav__el" href="/login">
+        <nav className="nav nav--user">
+          <a className="nav__el" href="/login">
             Log in
           </a>
-          <a class="nav__el nav__el--cta" href="#">
+          <a className="nav__el nav__el--cta" href="#">
             Sign up
           </a>
         </nav>
       </header> */}
-      <main class="main">
-        <div class="login-form">
-          <h2 class="heading-secondary ma-bt-lg">Register your account</h2>
-          <form class="form form--login">
-            <div class="form__group">
-              <label class="form__label" for="email">
+      <main className="main">
+        <div className="login-form">
+          <h2 className="heading-secondary ma-bt-lg">Register your account</h2>
+          <form className="form form--login">
+            <div className="form__group">
+              <label className="form__label" for="email">
                 Email address
               </label>
               <input
-                class="form__input"
+                className="form__input"
                 id="email"
                 type="email"
                 placeholder="you@example.com"
                 required
               />
             </div>
-            <div class="form__group ma-bt-md">
-              <label class="form__label" for="password">
+            <div className="form__group ma-bt-md">
+              <label className="form__label" for="password">
                 Password
               </label>
               <input
-                class="form__input"
+                className="form__input"
                 id="password"
                 type="password"
                 placeholder="••••••••"
                 required
-                minlength="8"
+                minLength="8"
               />
             </div>
-            <div class="form__group ma-bt-md">
-              <label class="form__label" for="confirmPassword">
+            <div className="form__group ma-bt-md">
+              <label className="form__label" for="confirmPassword">
                 Confirm Password
               </label>
               <input
-                class="form__input"
+                className="form__input"
                 id="confirmPassword"
                 type="password"
                 placeholder="••••••••"
                 required
-                minlength="8"
+                minLength="8"
               />
             </div>
-            <div class="form__group">
-              <button class="btn btn--green">Register</button>
+            <div className="form__group">
+              <button className="btn btn--green">Register</button>
             </div>
             <p>
               Already have an account? <Link to={"/login"}>Sign in</Link> here.

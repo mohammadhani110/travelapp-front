@@ -71,7 +71,7 @@ export function getTourDetails() {
   return async () => {
     dispatch(tourSlice.actions.startLoading());
     try {
-      const response = await axiosDEF.get("/api/tours");
+      const response = await axiosDEF.post("/api/tours");
       dispatch(tourSlice.actions.setTourDetails(response.data.data.tour));
       return { error: null };
     } catch (error) {

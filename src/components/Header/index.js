@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className="header__secondary">
       <nav className="nav nav--tours">
-        <Link to="/packages" className="nav__el">
+        <Link to="/tours" className="nav__el">
           All tours
         </Link>
         <form className="nav__search">

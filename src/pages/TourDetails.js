@@ -8,7 +8,7 @@ import DetailsPictures from "../components/DetailsPictures";
 import DetailsReviews from "../components/DetailsReviews";
 import DetailsBanner from "../components/DetailsBanner";
 
-const PackageDetails = () => {
+const TourDetails = () => {
   return (
     <>
       <Header />
@@ -22,4 +22,4 @@ const PackageDetails = () => {
   );
 };
 
-export default PackageDetails;
+export default TourDetails;

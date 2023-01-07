@@ -10,9 +10,10 @@ import Bookings from "../pages/Bookings";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
-import PackageDetails from "../pages/PackageDetails";
-import Packages from "../pages/Packages";
+import TourDetails from "../pages/TourDetails";
+import Tours from "../pages/Tours";
 import Register from "../pages/Register";
+import Success from "../pages/Success";
 
 const Router = () => {
   const token = localStorage.getItem("token");
@@ -21,9 +22,10 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/packages" element={<Packages />} />
-        <Route path="/package-details/:id" element={<PackageDetails />} />
+        <Route path="/tours" element={<Tours />} />
+        <Route path="/tours/:id" element={<TourDetails />} />
 
+        <Route path="/success" element={<Success />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 

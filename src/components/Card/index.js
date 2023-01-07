@@ -4,72 +4,71 @@ import fallback from "../../assets/img/tours/tour-1-cover.jpg";
 const Card = ({ tour }) => {
   const img = tour?.imageCover || fallback;
   return (
-    <div class="card--other">
-      <div class="card__header--other">
-        <div class="card__picture--other">
-          <div class="card__picture-overlay--other">&nbsp;</div>
-          <img src={img} alt="Tour 1" class="card__picture-img--other" />
+    <div className="card--other">
+      <div className="card__header--other">
+        <div className="card__picture--other">
+          <div className="card__picture-overlay--other">&nbsp;</div>
+          <img src={img} alt="Tour 1" className="card__picture-img--other" />
         </div>
 
-        <h3 class="heading-tertirary--other">
+        <h3 className="heading-tertirary--other">
           <span>{tour?.name || "The Forest Hiker"}</span>
         </h3>
       </div>
 
-      <div class="card__details--other">
-        <h4 class="card__sub-heading--other">
+      <div className="card__details--other">
+        <h4 className="card__sub-heading--other">
           {tour?.difficulty || "Easy"}{" "}
           {" " + (tour?.duration || 5) + "-day tour"}
         </h4>
-        <p class="card__text--other">
+        <p className="card__text--other">
           {tour?.summary ||
             "Breathtaking hike through the Canadian Banff National Park"}
         </p>
-        <div class="card__data--other">
-          <svg class="card__icon--other">
+        <div className="card__data--other">
+          <svg className="card__icon--other">
             <use
               xlinkHref={require("../../assets/img/icons.svg#icon-map-pin")}
             ></use>
           </svg>
           <span>Banff, Canada</span>
         </div>
-        <div class="card__data--other">
-          <svg class="card__icon--other">
+        <div className="card__data--other">
+          <svg className="card__icon--other">
             <use xlinkHref="../../assets/img/icons.svg#icon-calendar"></use>
           </svg>
           <span>April 2021</span>
         </div>
-        <div class="card__data--other">
-          <svg class="card__icon--other">
+        <div className="card__data--other">
+          <svg className="card__icon--other">
             <use xlinkHref="../../assets/img/icons.svg#icon-flag"></use>
           </svg>
           <span>3 stops</span>
         </div>
-        <div class="card__data--other">
-          <svg class="card__icon--other">
+        <div className="card__data--other">
+          <svg className="card__icon--other">
             <use xlinkHref="../../assets/img/icons.svg#icon-user"></use>
           </svg>
           <span>{(tour?.maxGroupSize || 25) + " people"}</span>
         </div>
       </div>
 
-      <div class="card__footer--other">
+      <div className="card__footer--other">
         <p>
-          <span class="card__footer-value--other">${tour?.price || 295} </span>
-          <span class="card__footer-text--other">per person</span>
+          <span className="card__footer-value--other">
+            ${tour?.price || 295}{" "}
+          </span>
+          <span className="card__footer-text--other">per person</span>
         </p>
-        <p class="card__ratings--other">
-          <span class="card__footer-value--other">
+        <p className="card__ratings--other">
+          <span className="card__footer-value--other">
             {tour?.ratingsAverage || "4.9"}{" "}
           </span>
-          <span class="card__footer-text--other">
+          <span className="card__footer-text--other">
             rating ({tour?.ratingsQuantity || "21"})
           </span>
         </p>
-        <Link
-          to={`/package-details/${tour?._id}`}
-          class="btn btn--green btn--small"
-        >
+        <Link to={`/tours/${tour?._id}`} className="btn btn--green btn--small">
           Details
         </Link>
       </div>

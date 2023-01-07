@@ -12,7 +12,7 @@ const HeaderHome = () => {
           <span className="heading-primary--main">Outdoors</span>
           <span className="heading-primary--sub">is where life happens</span>
         </h1>
-        <Link to="/packages" className="btn btn--white btn--animated">
+        <Link to="/tours" className="btn btn--white btn--animated">
           Discover our tours
         </Link>
       </div>
