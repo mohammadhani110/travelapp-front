@@ -2,18 +2,25 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import isEmpty from "../../utils/isEmpty";
+// import useAuth from "../../hooks/useAuth";
+
 const DetailsBanner = () => {
   const tours = useSelector((state) => state.tour.tours);
   const user = useSelector((state) => state.user.user);
+  // const { isAuthenticated } = useAuth();
   const [disabled, setDisabled] = React.useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
+
   const handleCheckout = async () => {
     const tourId = pathname.split("/")[2];
     const tour = tours.find((tour) => tour._id === tourId);
+
     console.log("tour", tour);
+
     if (isEmpty(user)) {
       navigate("/login");
+      localStorage.setItem("pathname", pathname);
       return;
     } else if (tourId.length > 2 && !isEmpty(tour) && !isEmpty(user)) {
       setDisabled(true);

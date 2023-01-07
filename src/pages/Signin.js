@@ -1,11 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import useAuth from "../hooks/useAuth";
+import { authenticateUser } from "../redux/slices/user";
+import { useDispatch } from "react-redux";
 // import { authenticateUser } from "../redux/slices/user";
-
-const Login = () => {
+const styles = {
+  border: "1px solid tomato",
+  color: "tomato",
+  padding: "1rem",
+  borderRadius: "0.5rem",
+  background: "rgb(255 179 166 / 50%)",
+  fontSize: "1rem",
+};
+const Signin = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [isDisabled, setIsDisabled] = useState(false);
+  const [error, setError] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // const { login } = useAuth();
   const handleChange = (key, value) => {
     setUserData((prevState) => {
       return { ...prevState, [key]: value };
@@ -21,19 +36,25 @@ const Login = () => {
     if (userData.password === "") {
       return;
     }
-    if (userData.email.length >= 7 && userData.password.length >= 7) {
+    if (userData.email.length >= 7 && userData.password.length >= 5) {
       const data = {
         email: userData.email,
         password: userData.password,
       };
-      try {
-        console.log("data", data);
-        // authenticateUser(data);
-        setIsDisabled(false);
-      } catch (e) {
-        console.log(e);
-        setIsDisabled(false);
-      }
+      console.log("data", data);
+      dispatch(
+        authenticateUser({
+          email: userData.email,
+          password: userData.password,
+        })
+      );
+      const returnUrl = localStorage.getItem("pathname");
+      console.log("returnUrl", returnUrl);
+      if (returnUrl) navigate(returnUrl);
+      setIsDisabled(false);
+      // if (response?.error) {
+      //   setError(response?.error);
+      // }
     }
   };
   return (
@@ -59,6 +80,7 @@ const Login = () => {
       <main className="main">
         <div className="login-form">
           <h2 className="heading-secondary ma-bt-lg">Log into your account</h2>
+          {error.length > 0 && <div style={styles}>{error}</div>}
           <form className="form form--login" onSubmit={handleSubmit}>
             <div className="form__group">
               <label className="form__label" for="email">
@@ -84,7 +106,7 @@ const Login = () => {
                 placeholder="••••••••"
                 required
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
-                minLength="7"
+                minLength="5"
               />
             </div>
             <div className="form__group">
@@ -107,4 +129,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signin;

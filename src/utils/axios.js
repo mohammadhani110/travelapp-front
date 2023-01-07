@@ -39,7 +39,7 @@ axiosDEF.interceptors.response.use(
 
     //   return Promise.reject(error);
     // }
-    return Promise.reject(error);
+    return Promise.reject(error.response);
   }
 );
 
@@ -93,7 +93,7 @@ axiosJWT.interceptors.response.use(
     //       return axios(originalRequest);
     //   }
 
-    return Promise.reject(error);
+    return Promise.reject(error.response);
   }
 );
 

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import logoWhite from "../../assets/img/logo-white.png";
-import user from "../../assets/img/users/user-5.jpg";
+import userImg from "../../assets/img/users/user-5.jpg";
+import isEmpty from "../../utils/isEmpty";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const user = useSelector((state) => state.user?.user);
+  const dispatch = useDispatch();
   return (
     <header className="header__secondary">
       <nav className="nav nav--tours">
@@ -30,34 +33,42 @@ const Header = () => {
         </Link>
       </div>
       <nav className="nav nav--user">
-        {isLoggedIn && (
+        {!isEmpty(user) && (
           <>
             <Link href="#" className="nav__el">
               My bookings
             </Link>
-            <Link href="#" className="nav__el">
-              <img src={user} alt="User" className="nav__user-img" />
-              <span>John</span>
-            </Link>
+            <div class="dropdown">
+              <button className="dropbtn nav__el">
+                <img src={userImg} alt="User" className="nav__user-img" />
+                <span>{user?.name || "John"}</span>
+              </button>
+              <div className="dropdown-content">
+                <button className="nav__el dropbtn ">Logout</button>
+              </div>
+            </div>
           </>
         )}
-
-        <button className="nav__el">
-          <Link
-            to={"/login"}
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            Log in
-          </Link>
-        </button>
-        <button className="nav__el nav__el--cta">
-          <Link
-            to={"/register"}
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            Register
-          </Link>
-        </button>
+        {isEmpty(user) && (
+          <>
+            <button className="nav__el">
+              <Link
+                to={"/login"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                log in
+              </Link>
+            </button>
+            <button className="nav__el nav__el--cta">
+              <Link
+                to={"/register"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Register
+              </Link>
+            </button>
+          </>
+        )}
       </nav>
     </header>
   );

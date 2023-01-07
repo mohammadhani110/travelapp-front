@@ -30,7 +30,6 @@ const slice = createSlice({
     setTourId(state, action) {
       state.isLoading = false;
       state.tourId = action.payload;
-      state.tours = [];
     },
 
     setTours(state, action) {

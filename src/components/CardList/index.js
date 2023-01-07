@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "../../redux/store";
+import { useSelector } from "react-redux";
 import Card from "../Card";
 
 const CardList = () => {
