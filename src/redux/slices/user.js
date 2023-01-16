@@ -16,7 +16,7 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: "user",
+  name: "auth",
   initialState,
   reducers: {
     // START LOADING

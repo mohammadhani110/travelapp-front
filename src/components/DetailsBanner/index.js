@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import isEmpty from "../../utils/isEmpty";
+import { dispatch } from "../../redux/store";
+import { createBooking } from "../../redux/slices/booking";
 // import useAuth from "../../hooks/useAuth";
 
 const DetailsBanner = () => {
@@ -45,6 +47,7 @@ const DetailsBanner = () => {
         })
         .then(({ url }) => {
           window.location = url;
+          dispatch(createBooking({ tour: tourId, user: user._id }));
           setDisabled(false);
         })
         .catch((e) => {

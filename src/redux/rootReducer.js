@@ -33,7 +33,7 @@ const rootPersistConfig = {
 };
 
 const userPersistConfig = {
-  key: "user",
+  key: "auth",
   storage,
   keyPrefix: "redux-",
   blacklist: ["isloggedIn"],
@@ -61,12 +61,12 @@ const appReducer = combineReducers({
 
 const rootReducer = (state, action) => {
   // when a logout action is dispatched it will reset redux state
-  if (action.type === "user/setLogout") {
+  if (action.type === "auth/setLogout") {
     console.log("Logout");
     // state = {};
     // storage.removeItem("persist:root");
     // storage.removeItem("persist:tour");
-    storage.removeItem("persist:user");
+    storage.removeItem("persist:auth");
     localStorage.removeItem("redux-user");
     // storage.removeItem("persist:persist");
     // window.location.pathname = "/tours";
