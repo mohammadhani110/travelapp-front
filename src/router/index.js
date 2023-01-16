@@ -51,7 +51,7 @@ export default Router;
 
 const ProtectedRoute = ({ redirectPath = "/login" }) => {
   // const { isAuthenticated } = useAuth();
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.auth.user);
   if (isEmpty(user)) {
     return <Navigate to={redirectPath} replace />;
   }
@@ -61,7 +61,7 @@ const ProtectedRoute = ({ redirectPath = "/login" }) => {
 
 const UnProtectedRoute = ({ redirectPath = "/tours" }) => {
   // const { isAuthenticated } = useAuth();
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.auth.user);
   if (!isEmpty(user)) {
     return <Navigate to={redirectPath} replace />;
   }

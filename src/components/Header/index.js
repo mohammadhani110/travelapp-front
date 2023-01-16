@@ -5,10 +5,10 @@ import userImg from "../../assets/img/users/user-5.jpg";
 import isEmpty from "../../utils/isEmpty";
 import { dispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
-import { logoutUser } from "../../redux/slices/user";
+import { logoutUser } from "../../redux/slices/auth";
 
 const Header = () => {
-  const user = useSelector((state) => state.user?.user);
+  const user = useSelector((state) => state.auth?.user);
   // const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -40,7 +40,7 @@ const Header = () => {
       <nav className="nav nav--user">
         {!isEmpty(user) && (
           <>
-            <Link href="#" className="nav__el">
+            <Link to="/bookings" className="nav__el">
               My bookings
             </Link>
             <div class="dropdown">

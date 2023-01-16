@@ -8,7 +8,7 @@ import { createBooking } from "../../redux/slices/booking";
 
 const DetailsBanner = () => {
   const tours = useSelector((state) => state.tour.tours);
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.auth.user);
   // const { isAuthenticated } = useAuth();
   const [disabled, setDisabled] = React.useState(false);
   const { pathname } = useLocation();

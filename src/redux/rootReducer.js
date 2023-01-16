@@ -2,9 +2,10 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 // slices
-import tourReducer from "./slices/tour";
 import persistStateReducer from "./slices/persist";
-import userReducer from "./slices/user";
+import tourReducer from "./slices/tour";
+import authReducer from "./slices/auth";
+import bookingReducer from "./slices/booking";
 
 // ----------------------------------------------------------------------
 
@@ -32,12 +33,18 @@ const rootPersistConfig = {
   whitelist: ["tour"],
 };
 
-const userPersistConfig = {
+const authPersistConfig = {
   key: "auth",
   storage,
   keyPrefix: "redux-",
   blacklist: ["isloggedIn"],
   // whitelist: ['sortBy', 'checkout'],
+};
+
+const bookingPersistConfig = {
+  key: "booking",
+  storage,
+  keyPrefix: "redux-",
 };
 // const tourPersistConfig = {
 //   key: "tour",
@@ -56,7 +63,8 @@ const appReducer = combineReducers({
   // persist: persistReducer(statePersistConfig, persistStateReducer),
   // tour: persistReducer(tourPersistConfig, tourReducer),
   tour: tourReducer,
-  user: persistReducer(userPersistConfig, userReducer),
+  booking: persistReducer(bookingPersistConfig, bookingReducer),
+  auth: persistReducer(authPersistConfig, authReducer),
 });
 
 const rootReducer = (state, action) => {
@@ -67,7 +75,7 @@ const rootReducer = (state, action) => {
     // storage.removeItem("persist:root");
     // storage.removeItem("persist:tour");
     storage.removeItem("persist:auth");
-    localStorage.removeItem("redux-user");
+    localStorage.removeItem("redux-auth");
     // storage.removeItem("persist:persist");
     // window.location.pathname = "/tours";
   }

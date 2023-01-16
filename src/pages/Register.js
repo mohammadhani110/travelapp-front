@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import { registerUser } from "../redux/slices/user";
+import { registerUser } from "../redux/slices/auth";
 import { useDispatch } from "../redux/store";
 import isEmpty from "../utils/isEmpty";
 

@@ -11,8 +11,8 @@ import { dispatch, getState } from "../store";
 const initialState = {
   isLoading: false,
   error: null,
-  tours: [],
-  tourDetails: {},
+  bookings: [],
+  bookingDetails: {},
 };
 
 const bookingSlice = createSlice({
@@ -36,6 +36,12 @@ const bookingSlice = createSlice({
       state.error = null;
       state.bookings = action.payload;
     },
+    // SET bookingS
+    setBookingDetails(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.bookingDetails = action.payload;
+    },
   },
 });
 
@@ -43,7 +49,7 @@ const bookingSlice = createSlice({
 export default bookingSlice.reducer;
 
 // Actions
-export const { setBookings } = bookingSlice.actions;
+export const { setBookings, setBookingDetails } = bookingSlice.actions;
 // ----------------------------------------------------------------------
 
 export function getAllBookings() {
@@ -66,6 +72,21 @@ export function createBooking(data) {
     dispatch(bookingSlice.actions.startLoading());
     try {
       const response = await axiosDEF.post("/api/bookings", data);
+      console.log("createBooking data: ", response.data);
+      dispatch(bookingSlice.actions.setBookingDetails(response.data.bookings));
+      return { error: null };
+    } catch (error) {
+      dispatch(bookingSlice.actions.hasError(error));
+      return { error };
+    }
+  };
+}
+
+export function getUserBookings(id) {
+  return async () => {
+    dispatch(bookingSlice.actions.startLoading());
+    try {
+      const response = await axiosJWT.get(`/api/users/${id}`);
       console.log("createBooking data: ", response.data);
       dispatch(bookingSlice.actions.setBookings(response.data.bookings));
       return { error: null };
