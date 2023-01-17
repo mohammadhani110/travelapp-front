@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import fallback from "../../assets/img/tours/tour-1-cover.jpg";
-import { setTourId } from "../../redux/slices/persist";
-import { dispatch } from "../../redux/store";
-const Card = ({ tour }) => {
+const BookingCard = ({ tour }) => {
   const img = tour?.imageCover || fallback;
   return (
     <div className="card--other">
@@ -72,10 +70,7 @@ const Card = ({ tour }) => {
         </p>
         <Link
           to={`/tours/${tour?._id}`}
-          onClick={() => {
-            localStorage.setItem("pathname", `/tours/${tour?._id}`);
-            dispatch(setTourId(tour?._id));
-          }}
+          onClick={localStorage.setItem("pathname", `/tours/${tour?._id}`)}
           className="btn btn--green btn--small"
         >
           Details
@@ -85,4 +80,4 @@ const Card = ({ tour }) => {
   );
 };
 
-export default Card;
+export default BookingCard;

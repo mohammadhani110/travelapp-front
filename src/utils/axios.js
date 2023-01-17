@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "./constants";
+import { store } from "../redux/store";
 // ----------------------------------------------------------------------
 
 // process.env.REACT_PROD_API_KEY ="https://travel-back.herokuapp.com"
@@ -46,8 +47,9 @@ axiosDEF.interceptors.response.use(
 
 axiosJWT.interceptors.request.use(
   async (config) => {
-    // const token = store.getState().auth.tokens.accessToken;
-    const token = localStorage.getItem("token");
+    const token = store.getState().auth.user.token;
+    console.log("token", token);
+    // const token = localStorage.getItem("token");
     config.withCredentials = true;
     config.headers = {
       Authorization: `Bearer ${token}`,

@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const DetailsDescription = () => {
+  const { tourDetails } = useSelector((state) => state.tour);
+
   return (
     <section className="section-description--other">
       <div className="overview-box--other">
