@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import isEmpty from "../../utils/isEmpty";
 import { dispatch } from "../../redux/store";
 import { createBooking } from "../../redux/slices/booking";
+import { BASE_URL } from "../../utils/constants";
 // import useAuth from "../../hooks/useAuth";
 
 const DetailsBanner = () => {
@@ -26,7 +27,7 @@ const DetailsBanner = () => {
       return;
     } else if (tourId.length > 2 && !isEmpty(tour) && !isEmpty(user)) {
       setDisabled(true);
-      fetch("http://localhost:5000/create-checkout-session", {
+      fetch(`${BASE_URL}/create-checkout-session`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

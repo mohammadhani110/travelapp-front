@@ -4,7 +4,7 @@ import fallback from "../../assets/img/tours/tour-1-cover.jpg";
 const BookingCard = ({ tour }) => {
   const img = tour?.imageCover || fallback;
   return (
-    <div className="card--other">
+    <div className="card__row--other">
       <div className="card__header--other">
         <div className="card__picture--other">
           <div className="card__picture-overlay--other">&nbsp;</div>
